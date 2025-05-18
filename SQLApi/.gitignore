@@ -1,0 +1,32 @@
+﻿## Archivos binarios de compilación
+bin/
+obj/
+
+## Archivos de usuario de Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Archivos de log y temporales
+*.log
+*.tmp
+
+## Configuración local
+.vscode/
+*.dbmdl
+*.jfm
+
+## Paquetes NuGet descargados
+packages/
+*.nupkg
+
+## Publicaciones
+publish/
+App_Data/
+
+## Archivos de seguridad
+secrets.json
+
+## Archivos de configuración del sistema
+.env
