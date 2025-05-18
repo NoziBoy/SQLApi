@@ -1,0 +1,24 @@
+﻿# Imagen base de .NET SDK (para compilar y publicar)
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /app
+
+# Copiar archivos del proyecto
+COPY . ./
+
+# Restaurar dependencias
+RUN dotnet restore
+
+# Compilar y publicar en modo Release
+RUN dotnet publish -c Release -o out
+
+# Imagen final de runtime (más ligera)
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+WORKDIR /app
+COPY --from=build /app/out .
+
+# Expone el puerto que Render usará
+ENV ASPNETCORE_URLS=http://0.0.0.0:10000
+EXPOSE 10000
+
+# Comando para ejecutar la app
+ENTRYPOINT ["dotnet", "SQLApi.dll"]
